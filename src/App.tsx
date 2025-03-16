@@ -8,6 +8,9 @@ import { CartProvider } from "./context/CartContext";
 import Index from "./pages/Index";
 import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import TemplatePage from "./pages/TemplatePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +26,18 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            
+            {/* Template pages for footer links */}
+            <Route path="/careers" element={<TemplatePage />} />
+            <Route path="/blog" element={<TemplatePage />} />
+            <Route path="/help" element={<TemplatePage />} />
+            <Route path="/shipping" element={<TemplatePage />} />
+            <Route path="/warranty" element={<TemplatePage />} />
+            <Route path="/privacy" element={<TemplatePage />} />
+            <Route path="/terms" element={<TemplatePage />} />
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
