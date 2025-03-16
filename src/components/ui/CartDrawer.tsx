@@ -1,6 +1,6 @@
 
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCart } from "../../context/CartContext";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,7 @@ export function CartDrawer() {
     subtotal,
     itemCount
   } = useCart();
+  const navigate = useNavigate();
 
   // Format price with proper currency
   const formatPrice = (price: number) => {
@@ -25,6 +26,11 @@ export function CartDrawer() {
       style: 'currency',
       currency: 'USD',
     }).format(price);
+  };
+
+  const handleCheckout = () => {
+    closeCart();
+    navigate('/checkout');
   };
 
   return (
@@ -153,7 +159,7 @@ export function CartDrawer() {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">Shipping</span>
-                  <span className="text-muted-foreground">Calculated at checkout</span>
+                  <span className="text-muted-foreground">Free</span>
                 </div>
                 <Separator />
                 <div className="flex items-center justify-between font-medium">
@@ -166,6 +172,7 @@ export function CartDrawer() {
                 <AnimatedButton 
                   className="w-full"
                   size="lg"
+                  onClick={handleCheckout}
                 >
                   Checkout
                 </AnimatedButton>

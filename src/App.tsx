@@ -7,11 +7,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { CartProvider } from "./context/CartContext";
+import { StripeProvider } from "./components/stripe/StripeProvider";
 import Index from "./pages/Index";
 import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Checkout from "./pages/Checkout";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentCancel from "./pages/PaymentCancel";
 import TemplatePage from "./pages/TemplatePage";
 import NotFound from "./pages/NotFound";
 
@@ -31,6 +35,9 @@ const App = () => (
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/payment-success" element={<PaymentSuccess />} />
+              <Route path="/payment-cancel" element={<PaymentCancel />} />
               
               {/* Template pages for footer links */}
               <Route path="/careers" element={<TemplatePage />} />
