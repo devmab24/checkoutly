@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, ShoppingBag, User, X } from "lucide-react";
+import { ChevronDown, Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { categories } from "../../data/products";
 import { useCart } from "../../context/CartContext";
 import { Button } from "@/components/ui/button";
