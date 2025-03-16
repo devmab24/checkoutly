@@ -1,11 +1,12 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, Search, ShoppingBag, User, X } from "lucide-react";
+import { ChevronDown, Menu, ShoppingBag, User, X } from "lucide-react";
 import { categories } from "../../data/products";
 import { useCart } from "../../context/CartContext";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { SearchDialog } from "@/components/ui/SearchDialog";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -115,14 +116,9 @@ export function Header() {
 
           {/* Header Actions */}
           <div className="flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              aria-label="Search"
-              className="hidden md:flex"
-            >
-              <Search className="h-5 w-5" />
-            </Button>
+            <div className="hidden md:block">
+              <SearchDialog />
+            </div>
             <Button
               variant="ghost"
               size="icon"
@@ -214,7 +210,10 @@ export function Header() {
               Contact
             </Link>
             <div className="flex items-center space-x-4 pt-2">
-              <Button variant="outline" size="sm" className="flex-1">
+              <Button variant="outline" size="sm" className="flex-1" onClick={() => {
+                setIsMobileMenuOpen(false);
+                document.querySelector<HTMLButtonElement>(".search-dialog-trigger")?.click();
+              }}>
                 <Search className="h-4 w-4 mr-2" />
                 Search
               </Button>
