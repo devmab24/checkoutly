@@ -52,11 +52,11 @@ const CheckoutForm = () => {
       return;
     }
 
-    // In development, just check if the card element has complete input
+    // In development, just check if the card element is complete
     // and redirect to success page
-    const { complete } = cardElement;
+    const isComplete = cardElement.complete;
     
-    if (complete) {
+    if (isComplete) {
       clearCart();
       navigate('/payment-success');
     } else {
