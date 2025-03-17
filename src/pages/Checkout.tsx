@@ -52,16 +52,20 @@ const CheckoutForm = () => {
       return;
     }
 
-    // In development, just check if the card element is complete
-    // and redirect to success page
-    const isComplete = cardElement.complete;
+    // Get card completion status using the correct method for Stripe Elements
+    // For development, we'll check if the card input is valid
+    const { error: cardError } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement,
+    });
     
-    if (isComplete) {
+    if (cardError) {
+      setError(cardError.message || "Please enter valid card details");
+      setProcessing(false);
+    } else {
+      // Card is valid, proceed with the payment (simulated for development)
       clearCart();
       navigate('/payment-success');
-    } else {
-      setError("Please enter valid card details");
-      setProcessing(false);
     }
   };
 
